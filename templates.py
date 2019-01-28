@@ -2,6 +2,7 @@
 """Process curator template"""
 import os
 from jinja2 import Environment, FileSystemLoader
+import indices
 
 
 def process_template():
@@ -11,9 +12,10 @@ def process_template():
     env = Environment(loader=FileSystemLoader(templates_dir))
     template = env.get_template('curator.yml.j2')
 
-    filename = os.path.join(root, 'yml', 'curator.yml')
-    with open(filename, 'w') as temp:
-        temp.write(template.render(index='filebeat'))
+    for i in indices.get_indices('indices.csv'):
+        filename = os.path.join(root, 'yml', 'curator_' + i['index'] + '.yml')
+        with open(filename, 'w') as temp:
+            temp.write(template.render(index=i['index'], age=i['age']))
 
 
 if __name__ == '__main__':

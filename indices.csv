@@ -1,4 +1,4 @@
-filebeat,14
+filebeat,7
 metricbeat,14
-packetbeat,14
-winlogbeat,14
+packetbeat,21
+winlogbeat,28
