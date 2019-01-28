@@ -10,12 +10,12 @@ def process_templates():
     root = os.path.dirname(os.path.abspath(__file__))
     templates_dir = os.path.join(root, 'templates')
     env = Environment(loader=FileSystemLoader(templates_dir))
-    template = env.get_template('curator.yml.j2')
+    template = env.get_template('delete_indices_action.yml.j2')
 
     for i in indices.get_indices('indices.csv'):
-        filename = os.path.join(root, 'yml', 'curator_' + i['index'] + '.yml')
+        filename = os.path.join(root, 'yml', 'delete_indices_action_' + i['index'] + '.yml')
         with open(filename, 'w') as temp:
-            temp.write(template.render(index=i['index'], age=i['age']))
+            temp.write(template.render(index_prefix=i['index'], older_than_days=i['age']))
 
 
 def main():
