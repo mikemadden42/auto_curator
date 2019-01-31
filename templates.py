@@ -12,6 +12,9 @@ def process_templates():
     env = Environment(loader=FileSystemLoader(templates_dir))
     template = env.get_template('delete_indices_action.yml.j2')
 
+    if not os.path.exists('yml'):
+        os.makedirs('yml')
+
     for i in indices.get_indices('indices.csv'):
         filename = os.path.join(root, 'yml',
                                 'delete_indices_action_' + i['index'] + '.yml')
