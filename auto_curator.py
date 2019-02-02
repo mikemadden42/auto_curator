@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """Automatically curate Elastic indices"""
 
+import subprocess
 import templates
 
 
@@ -8,8 +9,10 @@ def curate_indices():
     """Automatically curate indices"""
     configs = templates.get_ymls()
     for config in configs:
-        print('/usr/bin/curator --dry-run --config yml/curator.yml ' + 'yml/' +
-              config)
+        subprocess.call(
+            '/usr/bin/curator --dry-run --config yml/curator.yml ' + 'yml/' +
+            config,
+            shell=True)
 
 
 def main():
