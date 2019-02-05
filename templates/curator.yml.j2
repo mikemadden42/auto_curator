@@ -6,14 +6,14 @@ client:
     - 127.0.0.1
   port: 9200
   url_prefix:
-  use_ssl: True
+  use_ssl: true
   certificate:
   client_cert:
   client_key:
-  ssl_no_validate: True
+  ssl_no_validate: true
   http_auth: elastic:{{ elastic }}
   timeout: 30
-  master_only: False
+  master_only: false
 
 logging:
   loglevel: INFO
